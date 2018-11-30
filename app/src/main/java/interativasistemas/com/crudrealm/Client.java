@@ -2,6 +2,7 @@ package interativasistemas.com.crudrealm;
 
 import java.util.UUID;
 
+import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -33,6 +34,16 @@ public class Client extends RealmObject {
         this.cpf   = cpf;
     }
 
+    public void save(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        realm.copyToRealm(this);
+
+        realm.commitTransaction();
+        realm.close();
+
+    }
     public String getName() {
         return name;
     }

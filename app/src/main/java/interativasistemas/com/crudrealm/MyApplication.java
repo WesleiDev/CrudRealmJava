@@ -17,7 +17,7 @@ public class MyApplication extends Application {
                                     .name("clientes.realm")
                                     .build();
 
-        Realm.deleteRealm(config);
+//        Realm.deleteRealm(config);
         Realm.setDefaultConfiguration(config);
     }
 }
