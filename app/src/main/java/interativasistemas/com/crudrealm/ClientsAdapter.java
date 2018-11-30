@@ -29,6 +29,8 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientHolder> {
         //Adiciona as informações no item
         String name = clientList.get(position).getName();
         holder.clientName.setText(name);//Esta propriedade clienteName é do ClientHolder
+        holder.name     = name;
+        holder.id       = clientList.get(position).getId();
 
     }
 

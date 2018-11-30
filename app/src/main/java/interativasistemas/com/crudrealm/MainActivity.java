@@ -3,6 +3,7 @@ package interativasistemas.com.crudrealm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         ClientsAdapter adapter = new ClientsAdapter(clients);
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL  ));
 
-        for (int i = 0; i < clients.size(); i++){
-            Toast.makeText(getApplicationContext(), clients.get(i).toString(), Toast.LENGTH_LONG).show();
-        }
+//        for (int i = 0; i < clients.size(); i++){
+//            Toast.makeText(getApplicationContext(), clients.get(i).toString(), Toast.LENGTH_LONG).show();
+//        }
 
         Button addBtn = findViewById(R.id.addClientBtn);
 

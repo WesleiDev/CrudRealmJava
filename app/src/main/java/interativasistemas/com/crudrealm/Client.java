@@ -48,6 +48,31 @@ public class Client extends RealmObject {
 
     }
 
+    public void update(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        Client refClient = realm.where(Client.class).equalTo("id", this.getId()).findFirst();
+        refClient.setName(this.getName());
+        refClient.setEmail(this.getEmail());
+        refClient.setCpf(this.getCpf());
+
+
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public void delete(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+
+        Client refClient = realm.where(Client.class).equalTo("id", this.getId()).findFirst();
+        refClient.deleteFromRealm();
+
+        realm.commitTransaction();
+        realm.close();
+    }
+
     public static List<Client> findAll(){
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
@@ -66,6 +91,17 @@ public class Client extends RealmObject {
         realm.close();
 
         return clientList;
+    }
+
+    public static Client findById(String id){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        Client c  = realm.where(Client.class).equalTo("id", id).findFirst();
+        Client client = new Client(c.getId(), c.getName(), c.getEmail(), c.getCpf());
+
+        realm.commitTransaction();
+        realm.close();
+        return client;
     }
 
     public String getName() {
